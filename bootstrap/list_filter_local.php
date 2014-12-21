@@ -23,12 +23,12 @@
         });
 
         $('.filterinput').keyup(function() {
-            var a = $(this).val();
+            var a = $(this).val().toLowerCase();
             if (a.length > 2) {
                 // this finds all links in the list that contain the input,
                 // and hide the ones not containing the input while showing the ones that do
                 $(".list-group-item").each(function(){
-                    if($(this).text().indexOf(a) > -1){
+                    if($(this).text().toLowerCase().indexOf(a) > -1){
                         $(this).slideDown();
                     }else{
                         $(this).slideUp();
