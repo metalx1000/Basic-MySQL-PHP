@@ -12,10 +12,41 @@
         margin: 20px;
     }
 </style>
+
+<script>
+    $(document).ready(function(){
+        get_json();
+
+        $(".list-group").on('click','.list-group-item', function(){
+            console.log("test");
+            $(this).toggleClass("active");
+        });
+
+    });
+
+    function get_json(){
+        var url="../scripts/get_json.php";
+        $.getJSON( url, function( data ) {
+            $('#list').empty();             
+            for(var i = 0;i<data.length;i++){
+                var pid=data[i].pid;
+                var fname=data[i].fname;
+                var lname=data[i].lname;
+                var info = '<a href="#" class="list-group-item" data-pid="' + pid + '">';
+                info += '<h4 class="list-group-item-heading">';
+                info += lname + ", " + fname + "</h4>";
+                info += '<p class="list-group-item-text">'+pid+'</p>'
+                info += '</a>';
+                $('#list').append(info);
+            }
+        });
+    }
+</script>
+
 </head>
 <body>
 <div class="bs-example">
-    <div class="list-group">
+    <div class="list-group" id="list">
         <a href="#" class="list-group-item">
             <h4 class="list-group-item-heading">What is HTML?</h4>
             <p class="list-group-item-text">HTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pages.</p>
