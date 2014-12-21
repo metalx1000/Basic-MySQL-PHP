@@ -48,7 +48,7 @@
                 var pid=data[i].pid;
                 var fname=data[i].fname;
                 var lname=data[i].lname;
-                var info = '<a href="#" class="list-group-item" data-pid="' + pid + '">' +pid;
+                var info = '<a href="#" class="list-group-item" data-pid="' + pid + '">';
                 info += '<h4 class="list-group-item-heading">';
                 info += lname + ", " + fname + "</h4>";
                 info += '<p class="list-group-item-text">'+pid+'</p>'
@@ -62,8 +62,14 @@
 </head>
 <body>
 <div class="bs-example">
-    <input type="text" class="filterinput">
+    <div class="form-group">
+        <input type="text" class="form-control filterinput" id="filter" placeholder="Fiter List">
+    </div>
     <div class="list-group" id="list">
+        <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">If you are seeing this:</h4>
+            <p class="list-group-item-text">If you are seeing this, something is wrong.  Your data should be here.</p>
+        </a>
         <a href="#" class="list-group-item">
             <h4 class="list-group-item-heading">What is HTML?</h4>
             <p class="list-group-item-text">HTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pages.</p>
