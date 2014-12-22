@@ -53,9 +53,16 @@
         }else{
             $("#pid").val(generateKey());
         }
+
+
         $("#submit").click(function(event){
             event.preventDefault();
+            $("#alert").slideDown( "slow" ).delay( 3000 ).slideUp("slow");
             $.get( "../scripts/update.php", $( "#form1" ).serialize() );
+        });
+
+        $("#alert").click(function(){
+            $(this).slideUp("slow");
         });
         
     });
@@ -95,8 +102,8 @@
         <button class="btn btn-primary" id="submit">Submit</button>
     </form>
     <br>
-    <div class="alert alert-info" id="alert">
-        <a href="#" class="close" data-dismiss="alert">×</a>
+    <div class="alert alert-info" id="alert" style="display: none">
+        <a href="#" >×</a>
         <strong>Note:</strong> The inline form layout is rendered as default vertical form layout if the viewport width is less than 768px. Open the output in a new window and resize the screen to see how it works.
     </div>
 </div>
