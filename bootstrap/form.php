@@ -38,18 +38,29 @@
         }
     }   
 
+    var x;
     function get_json(pid){
         var url="../scripts/get_json.php?pid=" + pid;
         $.getJSON( url, function( data ) {
-        var pid=data[i].pid;
-                var fname=data[i].fname;
-                var lname=data[i].lname;
+            $(".form-control").each(function(e){
+                var id=$(this).attr("id");
+                var input=$(this);
+                jQuery.each(data[0], function(i, val) {
+                    if(i == id){
+                        input.val(val);
+                        var text = val;
+                    }
+                });
+                //console.log(data[0].+""+id);
+            });
+        info=data[0];
         });
     }
 
     $(document).ready(function(){
         if(getUrlParameter('pid')){
             $("#pid").val(getUrlParameter('pid'));
+            get_json(getUrlParameter('pid'));
         }else{
             $("#pid").val(generateKey());
         }
@@ -104,7 +115,8 @@
     <br>
     <div class="alert alert-info" id="alert" style="display: none">
         <a href="#" >×</a>
-        <strong>Note:</strong> The inline form layout is rendered as default vertical form layout if the viewport width is less than 768px. Open the output in a new window and resize the screen to see how it works.
+        <strong>Message:</strong> 
+        Entry Has been submitted!
     </div>
 </div>
 </body>
