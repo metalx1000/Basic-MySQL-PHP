@@ -48,10 +48,11 @@
                 var pid=data[i].pid;
                 var fname=data[i].fname;
                 var lname=data[i].lname;
-                var info = '<a href="#" class="list-group-item" data-pid="' + pid + '">';
+                var phone=data[i].phone;
+                var info = '<a href="form.php?pid='+pid+'" class="list-group-item" data-pid="' + pid + '">';
                 info += '<h4 class="list-group-item-heading">';
                 info += lname + ", " + fname + "</h4>";
-                info += '<p class="list-group-item-text">'+pid+'</p>'
+                info += '<p class="list-group-item-text">'+phone+'</p>'
                 info += '</a>';
                 $('#list').append(info);
             }
