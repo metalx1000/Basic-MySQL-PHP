@@ -38,13 +38,23 @@
         }
     }   
 
+    function get_json(pid){
+        var url="../scripts/get_json.php?pid=" + pid;
+        $.getJSON( url, function( data ) {
+        var pid=data[i].pid;
+                var fname=data[i].fname;
+                var lname=data[i].lname;
+        });
+    }
+
     $(document).ready(function(){
         if(getUrlParameter('pid')){
             $("#pid").val(getUrlParameter('pid'));
         }else{
             $("#pid").val(generateKey());
         }
-        $("#submit").click(function(){
+        $("#submit").click(function(event){
+            event.preventDefault();
             $.get( "../scripts/update.php", $( "#form1" ).serialize() );
         });
         
@@ -54,6 +64,12 @@
 </head>
 <body>
 <div class="bs-example">
+    <div class="form-group">
+        <a href="form.php" class="btn btn-success btn-lg">
+            <span class="glyphicon glyphicon-edit">
+            </span> New Entry
+        </a>
+    </div>
     <form class="form-inline" role="form" id="form1">
         <div class="form-group">
             <input type="hidden" id="pid" name="pid" >
@@ -79,7 +95,7 @@
         <button class="btn btn-primary" id="submit">Submit</button>
     </form>
     <br>
-    <div class="alert alert-info">
+    <div class="alert alert-info" id="alert">
         <a href="#" class="close" data-dismiss="alert">×</a>
         <strong>Note:</strong> The inline form layout is rendered as default vertical form layout if the viewport width is less than 768px. Open the output in a new window and resize the screen to see how it works.
     </div>
